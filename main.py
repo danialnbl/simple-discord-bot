@@ -1,20 +1,18 @@
 import discord
 import os
 from discord.ext import commands
-import music
 from keep_alive import keep_alive
 
-cogs = [music]
+#import all of the cogs
+from music import music
 
-client = commands.Bot(command_prefix="!", intent = discord.Intents.all())
+bot = commands.Bot(command_prefix="?", intent = discord.Intents.all())
 
-for i in range(len(cogs)):
-  cogs[i].setup(client)
+bot.add_cog(music(bot))
 
-@client.event
+@bot.event
 async def on_ready():
-  print('We have logged in as {0.user}'.format(client))
+  print('We have logged in as {0.user}'.format(bot))
 
-    
 keep_alive()
-client.run(os.getenv('TOKEN'))
+bot.run(os.getenv('TOKEN'))

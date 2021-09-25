@@ -4,7 +4,7 @@ from threading import Thread
 app = Flask('')
 
 @app.route('/')
-def home():
+def main():
   return "Hello. I am alive!"
 
 def run():
